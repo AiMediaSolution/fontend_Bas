@@ -34,6 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   if (localStorage.getItem("token")) {
-    window.location.href = "index.html";
+    // window.location.href = "index.html";
   }
 });
