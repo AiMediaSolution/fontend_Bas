@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render table with pagination and filtering
   const renderTable = () => {
-    //formatter date to VietNam
+    //formatter date to Viet Nam
     const formatter = new Intl.DateTimeFormat("vi-VN", {
       year: "numeric",
       month: "2-digit",
@@ -254,7 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextPage = document.getElementById("next-page");
     const lastPage = document.getElementById("last-page");
     const pageNumberInput = document.getElementById("page-number");
-
     const searchInput = document
       .getElementById("search-input")
       .value.toLowerCase();
@@ -310,7 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     totalEntries.textContent = totalItems;
     currentEntries.textContent = paginatedData.length;
-
     firstPage.classList.toggle("disabled", currentPage === 1);
     previousPage.classList.toggle("disabled", currentPage === 1);
     nextPage.classList.toggle("disabled", endIndex >= totalItems);
@@ -388,6 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const itemsPerPageSelect = document.getElementById("items-per-page");
+  console.log("item per page: ", itemsPerPageSelect);
   if (itemsPerPageSelect) {
     itemsPerPageSelect.addEventListener("change", renderTable);
   }
