@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = "ws://localhost:3000";
-  let ws;
   let currentPage = 1;
   let itemsPerPage = 10;
   let allData = [];
 
   const userName = localStorage.getItem("userName");
   if (userName) {
-    ws = connectWebSocket(userName, apiUrl, (data) => {
+    connectWebSocket(userName, apiUrl, (data) => {
       let statusBas = "Unknown";
       if (data && data.payload) {
         updateDataList(data);
@@ -43,6 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateStatusOfBas = (newMessage) => {
     const messagesDiv = document.getElementById("messages");
     messagesDiv.innerHTML = `<p><strong>BAS status:</strong> ${newMessage}</p>`;
+  };
+
+  const accountManager = () => {
+    window.location.href = "account.html";
   };
 
   // Logout
@@ -83,17 +86,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
-    searchInput.addEventListener("input", renderTable);
+    searchInput.addEventListener("input", () =>
+      renderTable(currentPage, itemsPerPage, allData)
+    );
   }
 
   const statusFilter = document.getElementById("status-filter");
   if (statusFilter) {
-    statusFilter.addEventListener("change", renderTable);
+    statusFilter.addEventListener("change", () =>
+      renderTable(currentPage, itemsPerPage, allData)
+    );
   }
 
   const itemsPerPageSelect = document.getElementById("items-per-page");
   if (itemsPerPageSelect) {
-    itemsPerPageSelect.addEventListener("change", renderTable);
+    itemsPerPageSelect.addEventListener("change", () =>
+      renderTable(currentPage, itemsPerPage, allData)
+    );
+  }
+
+  const userManager = document.getElementById("user-manager");
+  if (userManager) {
+    userManager.addEventListener("click", accountManager);
+  }
+  const addListData = document.getElementById("add-list-data");
+  if (addListData) {
+    addListData.addEventListener("click", () => {
+      $("#userManagementModal").modal("show");
+    });
+  }
+
+  const submitListButton = document.getElementById("submit-list");
+  if (submitListButton) {
+    submitListButton.addEventListener("click", () => {
+      getListData();
+      $("#userManagementModal").modal("hide");
+    });
   }
 
   // Check token when page is loaded

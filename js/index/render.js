@@ -1,5 +1,4 @@
 const renderTable = () => {
-  //formatter date to Viet Nam
   const formatter = new Intl.DateTimeFormat("vi-VN", {
     year: "numeric",
     month: "2-digit",
@@ -10,14 +9,28 @@ const renderTable = () => {
     hour12: false,
     timeZone: "Asia/Ho_Chi_Minh",
   });
+
   const dataList = document.getElementById("data-list");
   const totalEntries = document.getElementById("total-entries");
-  const currentEntriesSelect = document.getElementById("current-entries");
   const firstPage = document.getElementById("first-page");
   const previousPage = document.getElementById("previous-page");
   const nextPage = document.getElementById("next-page");
   const lastPage = document.getElementById("last-page");
   const pageNumberInput = document.getElementById("page-number");
+
+  if (
+    !dataList ||
+    !totalEntries ||
+    !firstPage ||
+    !previousPage ||
+    !nextPage ||
+    !lastPage ||
+    !pageNumberInput
+  ) {
+    console.error("One or more DOM elements not found");
+    return;
+  }
+
   const searchInput = document
     .getElementById("search-input")
     .value.toLowerCase();
@@ -36,15 +49,6 @@ const renderTable = () => {
   const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
   const paginatedData = filteredData.slice(startIndex, endIndex);
   dataList.innerHTML = "";
-  currentEntriesSelect.innerHTML = ""; // Clear current entries select options
-
-  // Update current entries select options
-  for (let i = 1; i <= paginatedData.length; i++) {
-    const option = document.createElement("option");
-    option.value = i;
-    option.textContent = i;
-    currentEntriesSelect.appendChild(option);
-  }
 
   paginatedData.forEach((item, index) => {
     const tr = document.createElement("tr");
@@ -61,21 +65,21 @@ const renderTable = () => {
     let displayAction = "";
     if (item.status === "fail") {
       displayAction = `<a href="#" class="settings" title="Resend" data-toggle="tooltip">
-                  <span class="material-symbols-outlined">refresh</span>
-                  </a>`;
+                <span class="material-symbols-outlined">refresh</span>
+                </a>`;
     } else {
       displayAction = "";
     }
     const dateObject = new Date(item.date);
     tr.innerHTML = `
-              <td>${startIndex + index + 1}</td>
-              <td>${item.content}</td>
-              <td>${formatter.format(dateObject)}</td>
-              ${statusDot}
-              <td>
-                  ${displayAction}
-                </td>
-          `;
+            <td>${startIndex + index + 1}</td>
+            <td>${item.content}</td>
+            <td>${formatter.format(dateObject)}</td>
+            ${statusDot}
+            <td>
+                ${displayAction}
+              </td>
+        `;
     dataList.appendChild(tr);
   });
   totalEntries.textContent = totalItems;

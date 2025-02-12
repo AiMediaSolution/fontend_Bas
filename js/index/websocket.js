@@ -1,4 +1,4 @@
-const connectWebSocket = (userName, apiUrl, onMessageCallback) => {
+function connectWebSocket(userName, apiUrl, onMessageCallback) {
   let ws = new WebSocket(apiUrl);
 
   ws.onopen = () => {
@@ -38,4 +38,4 @@ const connectWebSocket = (userName, apiUrl, onMessageCallback) => {
   };
 
   return ws;
-};
+}

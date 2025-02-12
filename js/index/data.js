@@ -1,3 +1,7 @@
+let currentPage = 1;
+let itemsPerPage = 10;
+let allData = [];
+
 const addData = async () => {
   const content = document.getElementById("content").value;
   try {

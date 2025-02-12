@@ -248,7 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const dataList = document.getElementById("data-list");
     const totalEntries = document.getElementById("total-entries");
-    // const currentEntries = document.getElementById("current-entries");
     const firstPage = document.getElementById("first-page");
     const previousPage = document.getElementById("previous-page");
     const nextPage = document.getElementById("next-page");
