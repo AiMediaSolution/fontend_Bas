@@ -150,10 +150,7 @@ table.table .avatar {
 }
 
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  float: none;
+  float: right;
   margin: 0 0 5px;
 }
 
@@ -248,25 +245,5 @@ input[type="number"] {
 
   .hint-text {
     font-size: 12px;
-  }
-
-  .table-title .row {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .table-title .col-sm-5,
-  .table-title .col-sm-7 {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .table-title .col-sm-5 {
-    order: 2;
-  }
-
-  .table-title .col-sm-7 {
-    order: 1;
   }
 }
