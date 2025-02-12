@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const dataList = document.getElementById("data-list");
     const totalEntries = document.getElementById("total-entries");
-    const currentEntries = document.getElementById("current-entries");
+    // const currentEntries = document.getElementById("current-entries");
     const firstPage = document.getElementById("first-page");
     const previousPage = document.getElementById("previous-page");
     const nextPage = document.getElementById("next-page");
@@ -308,7 +308,6 @@ document.addEventListener("DOMContentLoaded", () => {
       dataList.appendChild(tr);
     });
     totalEntries.textContent = totalItems;
-    currentEntries.textContent = paginatedData.length;
     firstPage.classList.toggle("disabled", currentPage === 1);
     previousPage.classList.toggle("disabled", currentPage === 1);
     nextPage.classList.toggle("disabled", endIndex >= totalItems);
@@ -358,7 +357,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
   };
-
+  function accountManager() {
+    window.location.href = "account.html";
+  }
   // Attach click event to buttons and forms
   const fetchDataButton = document.getElementById("fetch-data-button");
   if (fetchDataButton) {
@@ -386,11 +387,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const itemsPerPageSelect = document.getElementById("items-per-page");
-  console.log("item per page: ", itemsPerPageSelect);
   if (itemsPerPageSelect) {
     itemsPerPageSelect.addEventListener("change", renderTable);
   }
-
+  const userManager = document.getElementById("user-manager");
+  if (userManager) {
+    userManager.addEventListener("click", accountManager);
+  }
   // Check token when page is loaded
   const token = localStorage.getItem("token");
   console.log("Token on load:", token);

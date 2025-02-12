@@ -32,7 +32,7 @@
                                     Data</span></a>
                             <a href="#" class="btn btn-secondary">
                                 <i class="material-icons">person</i>
-                                <span>User Management</span>
+                                <span id="user-manager">User Management</span>
                             </a>
                         </div>
                     </div>
@@ -62,17 +62,15 @@
                         </tr>
                     </thead>
                     <tbody id="data-list">
-                        <!-- Data will be appended here -->
                     </tbody>
                 </table>
                 <div class="clearfix">
                     <div class="hint-text">
-                        Showing <b id="current-entries">0</b> out of <b id="total-entries">0</b> entries
-                        <select id="items-per-page" class="form-control d-inline-block w-auto ml-2">
-                            <option value="10">10 per page</option>
-                            <option value="30">30 per page</option>
-                            <option value="50">50 per page</option>
-                        </select>
+                        Showing <select id="items-per-page" class="form-control d-inline-block w-auto ml-2">
+                            <option value="10">10</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select> out of <b id="total-entries">0</b> entries
                     </div>
                     <ul class="pagination">
                         <li class="page-item disabled" id="first-page"><a href="#" class="page-link">First</a></li>
