@@ -5,7 +5,7 @@ let allData = [];
 const addData = async () => {
   const content = document.getElementById("content").value;
   try {
-    const response = await fetchWithAuth("http://localhost:3000/data", {
+    const response = await fetchWithAuth("https://localhost:3000/data", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -44,7 +44,7 @@ const getListData = () => {
 const addMultiListData = async (dataList) => {
   const userName = localStorage.getItem("userName");
   try {
-    const response = await fetchWithAuth("http://localhost:3000/data/list", {
+    const response = await fetchWithAuth("https://localhost:3000/data/list", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: dataList, userName: userName }),
@@ -64,7 +64,7 @@ const addMultiListData = async (dataList) => {
 
 const fetchData = async () => {
   try {
-    const response = await fetchWithAuth("http://localhost:3000/data", {
+    const response = await fetchWithAuth("https://localhost:3000/data", {
       method: "GET",
     });
 

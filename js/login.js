@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const apiUrl = "http://localhost:3000";
+  const apiUrl = "https://localhost:3000";
   const login = async () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;

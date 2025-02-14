@@ -103,11 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/auth/refresh-token", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken }),
-      });
+      const response = await fetch(
+        "https://localhost:3000/auth/refresh-token",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ refreshToken }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -149,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addData = async () => {
     const content = document.getElementById("content").value;
     try {
-      const response = await fetchWithAuth("http://localhost:3000/data", {
+      const response = await fetchWithAuth("https://localhost:3000/data", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -193,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addMultiListData = async (dataList) => {
     const userName = localStorage.getItem("userName");
     try {
-      const response = await fetchWithAuth("http://localhost:3000/data/list", {
+      const response = await fetchWithAuth("https://localhost:3000/data/list", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: dataList, userName: userName }),
@@ -216,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get all data by user role
   const fetchData = async () => {
     try {
-      const response = await fetchWithAuth("http://localhost:3000/data", {
+      const response = await fetchWithAuth("https://localhost:3000/data", {
         method: "GET",
       });
 

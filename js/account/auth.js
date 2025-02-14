@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:3000";
+const apiUrl = "https://localhost:3000";
 
 // Function to refresh the access token
 async function refreshToken() {
