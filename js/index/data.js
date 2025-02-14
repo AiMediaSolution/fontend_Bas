@@ -16,7 +16,7 @@ const addData = async () => {
     });
 
     if (response.ok) {
-      alert("Data added successfully");
+      showToast("Success", "Add account successfully!", "success");
       document.getElementById("content").value = "";
       fetchData(); // Fetch data after adding new data
     } else {
@@ -24,8 +24,7 @@ const addData = async () => {
       alert(`Failed to add data: ${errorData.error}`);
     }
   } catch (error) {
-    console.error("Error adding data:", error);
-    alert("An error occurred while adding data. Please try again later.");
+    showToast("Fail", "Add account fail!", "danger");
   }
 };
 
@@ -52,16 +51,14 @@ const addMultiListData = async (dataList) => {
     });
 
     if (response.ok) {
-      const result = await response.json();
-      console.log("All data added successfully:", result);
+      showToast("Success", "Add list account successfully!", "success");
       fetchData(); // Fetch data after adding multiple data
     } else {
       const errorData = await response.json();
       throw new Error(errorData.error || "Failed to add multiple data");
     }
   } catch (error) {
-    console.error("Error adding multiple data:", error);
-    alert(`Error: ${error.message}`);
+    showToast("Fail", `Add list account fail!. ${error.message}`, "danger");
   }
 };
 

@@ -62,7 +62,6 @@ function goToLastPage() {
 
 // Function to render table with pagination and filtering
 function renderTable(filteredAccounts = accountsData) {
-  console.log(accountsData, "aa");
   const accountTableBody = document.getElementById("accountTableBody");
   const totalEntries = document.getElementById("total-entries");
   const firstPage = document.getElementById("first-page");
@@ -72,7 +71,6 @@ function renderTable(filteredAccounts = accountsData) {
   const pageNumberInput = document.getElementById("page-number");
 
   itemsPerPage = parseInt(document.getElementById("items-per-page").value, 10);
-
   const totalItems = filteredAccounts.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -81,6 +79,20 @@ function renderTable(filteredAccounts = accountsData) {
 
   accountTableBody.innerHTML = "";
   paginatedAccounts.forEach((account, index) => {
+    let statusAccount = "";
+    let btn = "";
+    if (account.isDeleted) {
+      statusAccount = `<td><span class="status text-dark">&bull;</span></td>`;
+      btn = `<button class="btn btn-info" onclick="openRestoreModal(${account.account_Id}, '${account.userName}')" title="Resend">
+    <i class="fa fa-rotate-right"></i>
+  </button>`;
+    } else {
+      statusAccount = `<td><span class="status text-success">&bull;</span></td>`;
+      btn = `<button class="btn btn-danger" onclick="openDeleteModal(${account.account_Id}, '${account.userName}')" title="Delete">
+    <i class="fa fa-trash"></i>
+  </button>`;
+    }
+
     const row = document.createElement("tr");
     row.innerHTML = `
             <td>${startIndex + index + 1}</td>
@@ -88,14 +100,16 @@ function renderTable(filteredAccounts = accountsData) {
             <td>${account.account_type}</td>
             <td>${account.userName}</td>
             <td>${account.data}</td>
-            <td>
-                <button onclick="editAccount(${
-                  account.account_Id
-                })">Edit</button>
-                <button onclick="deleteAccount(${
-                  account.account_Id
-                })">Delete</button>
-            </td>
+            ${statusAccount}
+<td>
+  <button class="btn btn-primary" 
+          onclick="openEditModal(${account.account_Id}, '${
+      account.account_type
+    }', '${account.userName}')">
+    <i class="fa fa-pencil-alt"></i>
+  </button>
+  ${btn}
+</td>
         `;
     accountTableBody.appendChild(row);
   });

@@ -49,14 +49,28 @@ body {
 table.table tr th,
 table.table tr td {
   border-color: #e9e9e9;
-  padding: 12px 15px;
+  /* padding: 12px 15px; */
   vertical-align: middle;
+  text-align: center;
 }
 table.table tr th:first-child {
-  width: 60px;
+  width: 10px;
 }
 table.table tr th:last-child {
+  /* width: 100px; */
+}
+table.table tr th:nth-child(4) {
   width: 100px;
+}
+table.table tbody tr td:nth-child(4) {
+  text-align: left;
+}
+table.table tbody tr td:nth-child(6) {
+  font-size: 30px;
+  line-height: 1;
+}
+table.table tr th:nth-child(4) {
+  text-align: left;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
   background-color: #fcfcfc;
@@ -71,8 +85,8 @@ table.table th i {
 }
 table.table td:last-child i {
   opacity: 0.9;
-  font-size: 22px;
-  margin: 0 5px;
+  font-size: 16x;
+  margin: 0 0;
 }
 table.table td a {
   font-weight: bold;
@@ -91,7 +105,7 @@ table.table td a.delete {
   color: #f44336;
 }
 table.table td i {
-  font-size: 19px;
+  font-size: 14px;
 }
 table.table .avatar {
   border-radius: 50%;
@@ -238,4 +252,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 input[type="number"] {
   -moz-appearance: textfield;
+}
+#page-number {
+  width: 50px !important;
+  margin: 10px 10px;
 }

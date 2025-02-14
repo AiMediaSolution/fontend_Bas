@@ -20,19 +20,14 @@ function processCSV() {
         }));
 
       console.log(users);
-      document.getElementById("output").textContent = JSON.stringify(
-        users,
-        null,
-        2
-      );
-
       // Add each user account
       for (const user of users) {
         await addListAccount(user.userName, user.passWord);
       }
     },
     error: function (error) {
-      console.error("Error reading CSV file:", error);
+      showToast("Warning", "Error reading CSV file!", "warning");
+      console.warn("Error reading CSV file:", error);
     },
   });
 }
@@ -49,11 +44,42 @@ async function addListAccount(username, password) {
       body: JSON.stringify({ accountType, username, password }),
     });
     if (!response.ok) {
+      showToast("Success", "CSV file processed successfully!", "danger");
       throw new Error("Failed to create account");
     }
-    console.log(`Account for ${username} created successfully.`);
+    hideModal("uploadCSVModal");
+    showToast("Success", "Add account by CSV successfully!", "success");
   } catch (error) {
-    console.error("Error creating account:", error);
-    // alert(error.message || "An unexpected error occurred");
+    showToast("Fail", "Add account fail. Please try again!", "danger");
+    console.warn("Error creating account:", error);
+  }
+}
+function showToast(title, message, type) {
+  const toast = new bootstrap.Toast(document.getElementById("csv-toast"));
+  document.getElementById("toast-title").textContent = title;
+  document.getElementById("toast-body").textContent = message;
+  document.getElementById("csv-toast").classList.add(`text-bg-${type}`);
+  toast.show();
+}
+function hideModal(modalId) {
+  const modalElement = document.getElementById(modalId);
+  if (modalElement) {
+    const modalInstance =
+      bootstrap.Modal.getInstance(modalElement) ||
+      new bootstrap.Modal(modalElement);
+    modalInstance.hide();
+  } else {
+    console.warn(`Modal with ID '${modalId}' not found.`);
+  }
+}
+function showModal(modal) {
+  const modalElement = document.getElementById(modal);
+  if (modalElement) {
+    const modalInstance =
+      bootstrap.Modal.getInstance(modalElement) ||
+      new bootstrap.Modal(modalElement);
+    modalInstance.show();
+  } else {
+    console.warn(`Modal with ID '${modal}' not found.`);
   }
 }

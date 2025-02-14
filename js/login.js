@@ -21,11 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "index.html";
       } else {
         const errorData = await response.json();
-        alert(`Login failed: ${errorData.error}`);
+        showToast("Login fail", ` ${errorData.error} !`, "danger");
+        // alert(`Login failed: ${errorData.error}`);
       }
     } catch (error) {
       console.error("Error during login:", error);
-      alert("An error occurred during login. Please try again later.");
+      showToast(
+        "Login fail",
+        "An error occurred during login. Please try again later.",
+        "danger"
+      );
     }
   };
 

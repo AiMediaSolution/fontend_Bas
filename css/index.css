@@ -32,10 +32,10 @@ body {
 }
 
 .table-title .btn {
-  color: #566787;
+  /* color: #566787; */
   float: right;
   font-size: 13px;
-  background: #fff;
+  /* background: #fff; */
   border: none;
   min-width: 50px;
   border-radius: 2px;
@@ -44,11 +44,11 @@ body {
   margin-left: 10px;
 }
 
-.table-title .btn:hover,
+/* .table-title .btn:hover,
 .table-title .btn:focus {
   color: #566787;
   background: #f2f2f2;
-}
+} */
 
 .table-title .btn i {
   float: left;
@@ -246,4 +246,11 @@ input[type="number"] {
   .hint-text {
     font-size: 12px;
   }
+}
+#page-number {
+  width: 50px !important;
+  margin: 0 10px;
+}
+#items-per-page {
+  margin: 0 0.5rem;
 }

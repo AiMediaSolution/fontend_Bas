@@ -109,20 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (userManager) {
     userManager.addEventListener("click", accountManager);
   }
-  const addListData = document.getElementById("add-list-data");
-  if (addListData) {
-    addListData.addEventListener("click", () => {
-      $("#userManagementModal").modal("show");
-    });
-  }
-
-  const submitListButton = document.getElementById("submit-list");
-  if (submitListButton) {
-    submitListButton.addEventListener("click", () => {
-      getListData();
-      $("#userManagementModal").modal("hide");
-    });
-  }
 
   // Check token when page is loaded
   const token = localStorage.getItem("token");
