@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = "https://localhost:3000";
+  console.log(apiUrl);
   const login = async () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -22,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         const errorData = await response.json();
         showToast("Login fail", ` ${errorData.error} !`, "danger");
-        // alert(`Login failed: ${errorData.error}`);
       }
     } catch (error) {
       console.error("Error during login:", error);
